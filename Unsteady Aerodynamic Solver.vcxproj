@@ -127,10 +127,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="linspace.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="zeros.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="linspace.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="zeros.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
