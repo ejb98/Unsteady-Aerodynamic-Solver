@@ -1,3 +1,4 @@
+#include "Matrix.h"
 #include "Mesh.h"
 #include "linspace.h"
 #include "zeros.h"
@@ -5,15 +6,13 @@
 #include <iostream>
 #include <vector>
 
-using matrix_t = std::vector<std::vector<double>>;
-
 int main()
 {
 	Mesh mesh{};
 
 	std::vector<double> test{ linspace(0.0, 5.0, 5) };
 
-	matrix_t matrix{ zeros(5, 5) };
+	Matrix matrix{ zeros(5, 5) };
 
 	for (int i{ 0 }; i < test.size(); ++i)
 		std::cout << test[i] << '\n';
