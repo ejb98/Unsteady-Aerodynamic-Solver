@@ -1,12 +1,14 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 
+#include "Body.h"
 #include <vector>
 
 class System
 {
 private:
 	std::vector<double> m_time{};
+	std::vector<Body> m_bodies{};
 
 public:
 	System();

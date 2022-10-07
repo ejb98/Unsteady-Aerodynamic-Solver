@@ -129,18 +129,24 @@
   <ItemGroup>
     <ClCompile Include="linspace.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Surface.cpp" />
     <ClCompile Include="System.cpp" />
+    <ClCompile Include="Wake.cpp" />
     <ClCompile Include="zeros.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Body.h" />
+    <ClInclude Include="Component.h" />
     <ClInclude Include="InducedVelocity.h" />
     <ClInclude Include="linspace.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Position.h" />
+    <ClInclude Include="Surface.h" />
     <ClInclude Include="System.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="Velocity.h" />
+    <ClInclude Include="Wake.h" />
     <ClInclude Include="zeros.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
