@@ -1,37 +1,34 @@
-#ifndef RING_H
-#define RING_H
+#ifndef PANEL_H
+#define PANEL_H
 
 #include "Point.h"
 #include "Vector.h"
 #include <array>
 
-class Ring
+class Panel
 {
 private:
 	std::array<Point, 4> m_vertices{};
 
-	Point m_collocationPoint{};
-
 	Vector m_normalVector{};
 
-	double m_vorticityStrength{};
+	double m_pressure{};
 
 	bool m_trailingEdge{};
 	bool m_leadingEdge{};
 	bool m_root{};
 
 public:
-	Ring();
-	Ring(const std::array<Point, 4>& vertices);
+	Panel();
+	Panel(const std::array<Point, 4>& vertices);
 
 	const std::array<Point, 4>& getVertices() const;
 	void setVertices(const std::array<Point, 4>& vertices);
 
-	const Point& getCollocationPoint() const;
 	const Vector& getNormalVector() const;
 
-	double getVorticityStrength() const;
-	void setVorticityStrength(double vorticityStrength);
+	double getPressure() const;
+	void setPressure(double pressure);
 
 	bool isOnTrailingEdge() const;
 	bool isOnLeadingEdge() const;

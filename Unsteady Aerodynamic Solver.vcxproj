@@ -136,6 +136,7 @@
     <ClCompile Include="dot.cpp" />
     <ClCompile Include="linspace.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Panel.cpp" />
     <ClCompile Include="Ring.cpp" />
     <ClCompile Include="Surface.cpp" />
     <ClCompile Include="System.cpp" />
@@ -156,6 +157,7 @@
     <ClInclude Include="linspace.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Panel.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="Ring.h" />

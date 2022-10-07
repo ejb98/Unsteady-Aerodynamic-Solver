@@ -15,5 +15,4 @@ void Ring::setVorticityStrength(double vorticityStrength) { m_vorticityStrength 
 
 bool Ring::isOnTrailingEdge() const { return m_trailingEdge; }
 bool Ring::isOnLeadingEdge() const { return m_leadingEdge; }
-bool Ring::isOnTip() const { return m_tip; }
 bool Ring::isOnRoot() const { return m_root; }
