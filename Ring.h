@@ -16,10 +16,6 @@ private:
 
 	double m_vorticityStrength{};
 
-	bool m_trailingEdge{};
-	bool m_leadingEdge{};
-	bool m_root{};
-
 public:
 	Ring();
 	Ring(const std::array<Point, 4>& vertices);
@@ -32,10 +28,6 @@ public:
 
 	double getVorticityStrength() const;
 	void setVorticityStrength(double vorticityStrength);
-
-	bool isOnTrailingEdge() const;
-	bool isOnLeadingEdge() const;
-	bool isOnRoot() const;
 };
 
 #endif

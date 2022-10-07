@@ -129,10 +129,12 @@
   <ItemGroup>
     <ClCompile Include="biotSavart.cpp" />
     <ClCompile Include="calculateArea.cpp" />
+    <ClCompile Include="calculateCollocationPoint.cpp" />
     <ClCompile Include="calculateNormalVector.cpp" />
     <ClCompile Include="calculateRotationMatrix.cpp" />
     <ClCompile Include="calculateVector.cpp" />
     <ClCompile Include="constructPanels.cpp" />
+    <ClCompile Include="constructRings.cpp" />
     <ClCompile Include="cross.cpp" />
     <ClCompile Include="dot.cpp" />
     <ClCompile Include="linspace.cpp" />
@@ -148,10 +150,13 @@
     <ClInclude Include="biotSavart.h" />
     <ClInclude Include="Body.h" />
     <ClInclude Include="calculateArea.h" />
+    <ClInclude Include="calculateCollocationPoint.h" />
     <ClInclude Include="calculateNormalVector.h" />
     <ClInclude Include="calculateRotationMatrix.h" />
     <ClInclude Include="calculateVector.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="constructPanels.h" />
+    <ClInclude Include="constructRings.h" />
     <ClInclude Include="cross.h" />
     <ClInclude Include="dot.h" />
     <ClInclude Include="InducedVelocity.h" />

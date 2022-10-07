@@ -1,12 +1,16 @@
 #include "Panel.h"
+#include "Mesh.h"
 #include "Matrix.h"
 #include "Position.h"
 #include "Point.h"
 #include <vector>
-#include <cassert>
 
-std::vector<Panel> constructPanels(const Matrix& xMatrix, const Matrix& yMatrix, const Matrix& zMatrix)
+std::vector<Panel> constructPanels(const Mesh& mesh)
 {
+	Matrix xMatrix{ mesh.xMatrix };
+	Matrix yMatrix{ mesh.yMatrix };
+	Matrix zMatrix{ mesh.zMatrix };
+
 	std::vector<Panel> panels{};
 
 	int rows{ static_cast<int>(xMatrix.size()) };
@@ -30,20 +34,9 @@ std::vector<Panel> constructPanels(const Matrix& xMatrix, const Matrix& yMatrix,
 
 			Panel panel{ vertices };
 
-			if (column == 0)
-				panel.setLeadingEdgeStatus(true);
-
-			if (column == columns - 2)
-				panel.setTrailingEdgeStatus(true);
-
-			if (row == 0)
-				panel.setRootStatus(true);
-
-			if (row == rows - 2)
-				panel.setTipStatus(true);
-
 			panels.push_back(panel);
 		}
 	}
+
 	return panels;
 }

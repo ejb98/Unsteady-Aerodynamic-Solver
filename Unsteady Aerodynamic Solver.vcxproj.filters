@@ -63,6 +63,12 @@
     <ClCompile Include="constructPanels.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="constructRings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="calculateCollocationPoint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mesh.h">
@@ -132,6 +138,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Panel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="constructRings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="constructPanels.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="calculateCollocationPoint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
