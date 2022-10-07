@@ -16,6 +16,9 @@ public:
 
 	const std::vector<double>& getTime() const;
 	void setTime(const std::vector<double>& time);
+
+	const std::vector<Body>& getBodies() const;
+	void setBodies(const std::vector<Body>& bodies);
 };
 
 #endif
