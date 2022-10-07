@@ -48,6 +48,15 @@
     <ClCompile Include="calculateVector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="calculateNormalVector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="calculateArea.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="biotSavart.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mesh.h">
@@ -105,6 +114,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="calculateVector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="calculateNormalVector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="calculateArea.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="biotSavart.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

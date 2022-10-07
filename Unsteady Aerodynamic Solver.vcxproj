@@ -127,6 +127,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="biotSavart.cpp" />
+    <ClCompile Include="calculateArea.cpp" />
+    <ClCompile Include="calculateNormalVector.cpp" />
     <ClCompile Include="calculateRotationMatrix.cpp" />
     <ClCompile Include="calculateVector.cpp" />
     <ClCompile Include="cross.cpp" />
@@ -140,7 +143,10 @@
     <ClCompile Include="zeros.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="biotSavart.h" />
     <ClInclude Include="Body.h" />
+    <ClInclude Include="calculateArea.h" />
+    <ClInclude Include="calculateNormalVector.h" />
     <ClInclude Include="calculateRotationMatrix.h" />
     <ClInclude Include="calculateVector.h" />
     <ClInclude Include="Component.h" />
