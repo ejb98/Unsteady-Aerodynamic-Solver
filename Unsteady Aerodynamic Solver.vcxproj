@@ -142,10 +142,14 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="meshgrid.cpp" />
     <ClCompile Include="Panel.cpp" />
+    <ClCompile Include="Point.cpp" />
+    <ClCompile Include="Position.cpp" />
     <ClCompile Include="printMatrix.cpp" />
     <ClCompile Include="Ring.cpp" />
     <ClCompile Include="Surface.cpp" />
     <ClCompile Include="System.cpp" />
+    <ClCompile Include="Vector.cpp" />
+    <ClCompile Include="Velocity.cpp" />
     <ClCompile Include="Wake.cpp" />
     <ClCompile Include="zeros.cpp" />
   </ItemGroup>

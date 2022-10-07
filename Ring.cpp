@@ -27,12 +27,20 @@ void Ring::setVorticityStrength(double vorticityStrength) { m_vorticityStrength 
 
 void Ring::print() const
 {
+	std::cout << "Normal Vector: ";
+	m_normalVector.print();
+
+	std::cout << "Vorticity Strength: " << m_vorticityStrength << "\n";
+
+	std::cout << '\n';
+
 	int index{};
 	for (const auto& vertex : m_vertices)
 	{
-		std::cout << "Vertex " << index++ << ": ("
-			<< vertex.position.x << ", "
-			<< vertex.position.y << ", "
-			<< vertex.position.z << ")\n";
+		std::cout << "Vertex " << index++ << ":\n";
+		vertex.print();
 	}
+
+	std::cout << "Collocation Point:\n";
+	m_collocationPoint.print();
 }

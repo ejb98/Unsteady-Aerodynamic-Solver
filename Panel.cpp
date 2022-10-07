@@ -26,12 +26,18 @@ void Panel::setPressure(double pressure) { m_pressure = pressure; }
 
 void Panel::print() const
 {
+	std::cout << "Normal Vector: ";
+	m_normalVector.print();
+
+	std::cout << "Surface Area: " << m_area << " m^2\n";
+	std::cout << "Pressure: " << m_pressure << " Pa\n";
+
+	std::cout << '\n';
+
 	int index{};
 	for (const auto& vertex : m_vertices)
 	{
-		std::cout << "Vertex " << index++ << ": ("
-							   << vertex.position.x << ", " 
-							   << vertex.position.y << ", " 
-							   << vertex.position.z << ")\n";
+		std::cout << "Vertex " << index++ << ":\n";
+		vertex.print();
 	}
 }

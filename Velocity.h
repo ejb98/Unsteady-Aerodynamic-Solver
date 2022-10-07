@@ -6,6 +6,8 @@ struct Velocity
 	double x{};
 	double y{};
 	double z{};
+
+	void print() const;
 };
 
 #endif
