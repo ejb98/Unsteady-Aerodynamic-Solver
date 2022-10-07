@@ -17,6 +17,7 @@ private:
 	bool m_trailingEdge{};
 	bool m_leadingEdge{};
 	bool m_root{};
+	bool m_tip{};
 
 public:
 	Panel();
@@ -30,9 +31,15 @@ public:
 	double getPressure() const;
 	void setPressure(double pressure);
 
+	void setTrailingEdgeStatus(bool status);
+	void setLeadingEdgeStatus(bool status);
+	void setRootStatus(bool status);
+	void setTipStatus(bool status);
+
 	bool isOnTrailingEdge() const;
 	bool isOnLeadingEdge() const;
 	bool isOnRoot() const;
+	bool isOnTip() const;
 };
 
 #endif

@@ -60,6 +60,9 @@
     <ClCompile Include="Panel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="constructPanels.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mesh.h">

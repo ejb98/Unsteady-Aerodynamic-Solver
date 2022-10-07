@@ -132,6 +132,7 @@
     <ClCompile Include="calculateNormalVector.cpp" />
     <ClCompile Include="calculateRotationMatrix.cpp" />
     <ClCompile Include="calculateVector.cpp" />
+    <ClCompile Include="constructPanels.cpp" />
     <ClCompile Include="cross.cpp" />
     <ClCompile Include="dot.cpp" />
     <ClCompile Include="linspace.cpp" />
