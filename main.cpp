@@ -1,15 +1,20 @@
-#include "System.h"
-#include <cmath>
+#include "Vector.h"
+#include "dot.h"
+#include "cross.h"
 #include <iostream>
-#include <iomanip>
 
 int main()
 {
-	System system{};
+	Vector v1{ 1.0, 2.0, 3.0 };
+	Vector v2{ 4.0, 5.0, 6.0 };
 
-	const double pi{ 4.0 * std::atan(1.0) };
+	double dotProduct{ dot(v1, v2) };
+	Vector crossProduct{ cross(v1, v2) };
 
-	std::cout << std::setprecision(15) << std::fixed << pi << '\n';
+	std::cout << "The dot product is: " << dotProduct << '\n';
+	std::cout << "The cross product is: [" << crossProduct.x << ", "
+										   << crossProduct.y << ", "
+										   << crossProduct.z << "]\n";
 
 	return 0;
 }
