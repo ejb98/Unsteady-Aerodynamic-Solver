@@ -1,6 +1,7 @@
 #include "Ring.h"
 #include "calculateCollocationPoint.h"
 #include "calculateNormalVector.h"
+#include <iostream>
 
 Ring::Ring() = default;
 Ring::Ring(const std::array<Point, 4>& vertices) :
@@ -23,3 +24,15 @@ const Vector& Ring::getNormalVector() const { return m_normalVector; }
 
 double Ring::getVorticityStrength() const { return m_vorticityStrength; }
 void Ring::setVorticityStrength(double vorticityStrength) { m_vorticityStrength = vorticityStrength; }
+
+void Ring::print() const
+{
+	int index{};
+	for (const auto& vertex : m_vertices)
+	{
+		std::cout << "Vertex " << index++ << ": ("
+			<< vertex.position.x << ", "
+			<< vertex.position.y << ", "
+			<< vertex.position.z << ")\n";
+	}
+}

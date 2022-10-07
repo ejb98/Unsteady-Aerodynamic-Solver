@@ -26,6 +26,8 @@ public:
 
 	double getPressure() const;
 	void setPressure(double pressure);
+
+	void print() const;
 };
 
 #endif

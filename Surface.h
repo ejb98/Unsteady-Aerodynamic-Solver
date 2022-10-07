@@ -20,6 +20,8 @@ public:
 
 	const Mesh& getMesh() const;
 	void setMesh(const Mesh& mesh);
+
+	void print() const;
 };
 
 #endif

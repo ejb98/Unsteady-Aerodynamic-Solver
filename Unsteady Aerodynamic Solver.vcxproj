@@ -134,12 +134,15 @@
     <ClCompile Include="calculateRotationMatrix.cpp" />
     <ClCompile Include="calculateVector.cpp" />
     <ClCompile Include="constructPanels.cpp" />
+    <ClCompile Include="constructRectangularMesh.cpp" />
     <ClCompile Include="constructRings.cpp" />
     <ClCompile Include="cross.cpp" />
     <ClCompile Include="dot.cpp" />
     <ClCompile Include="linspace.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="meshgrid.cpp" />
     <ClCompile Include="Panel.cpp" />
+    <ClCompile Include="printMatrix.cpp" />
     <ClCompile Include="Ring.cpp" />
     <ClCompile Include="Surface.cpp" />
     <ClCompile Include="System.cpp" />
@@ -156,6 +159,7 @@
     <ClInclude Include="calculateVector.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="constructPanels.h" />
+    <ClInclude Include="constructRectangularMesh.h" />
     <ClInclude Include="constructRings.h" />
     <ClInclude Include="cross.h" />
     <ClInclude Include="dot.h" />
@@ -163,9 +167,11 @@
     <ClInclude Include="linspace.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="meshgrid.h" />
     <ClInclude Include="Panel.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Position.h" />
+    <ClInclude Include="printMatrix.h" />
     <ClInclude Include="Ring.h" />
     <ClInclude Include="Surface.h" />
     <ClInclude Include="System.h" />

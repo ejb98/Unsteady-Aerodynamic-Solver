@@ -28,6 +28,8 @@ public:
 
 	double getVorticityStrength() const;
 	void setVorticityStrength(double vorticityStrength);
+
+	void print() const;
 };
 
 #endif
