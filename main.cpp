@@ -24,7 +24,7 @@ int main()
 	// Time parameters
 	double startTime{ 0.0 };
 	double endTime{ 2.0 };
-	int timeSteps{ 50 };
+	int timeSteps{ 240 };
 
 	// Static parameters
 	double angleOfAttack{ 3.1415926535 * 5.0 / 180.0 };
@@ -46,6 +46,9 @@ int main()
 	std::vector<double> time{ linspace(startTime, endTime, timeSteps) };
 
 	// Create history of component
+
+	std::cout << "Calculating Motion History... ";
+
 	std::vector<Component> history(time.size());
 
 	for (int step{ 0 }; step < history.size(); ++step)
@@ -60,7 +63,11 @@ int main()
 		history[step] = component;
 	}
 
+	std::cout << "Done!\n";
+
+	std::cout << "Calculating Velocities... ";
 	calculateVelocities(history, time);
+	std::cout << "Done!\n";
 
 	for (const auto& component : history)
 	{
