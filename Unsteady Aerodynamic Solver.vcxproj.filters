@@ -111,6 +111,15 @@
     <ClCompile Include="solve.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="lastColumn.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="joinColumns.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="insertColumn.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mesh.h">
@@ -219,6 +228,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="solve.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lastColumn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="joinColumns.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="insertColumn.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

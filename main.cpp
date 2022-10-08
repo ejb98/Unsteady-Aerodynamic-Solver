@@ -10,6 +10,9 @@
 #include "printMatrix.h"
 #include "printVector.h"
 #include "linspace.h"
+#include "lastColumn.h"
+#include "joinColumns.h"
+#include "insertColumn.h"
 #include "solve.h" // See note*
 #include <iostream>
 #include <vector>
@@ -35,13 +38,13 @@ int main()
 	double span{ 6.0 };
 
 	// Number of panels
-	int chordwisePanels{ 4 };
-	int spanwisePanels{ 12 };
+	int chordwisePanels{ 2 };
+	int spanwisePanels{ 2 };
 
 	// Time parameters
 	double startTime{ 0.0 };
 	double endTime{ 2.0 };
-	int timeSteps{ 75 };
+	int timeSteps{ 10 };
 
 	// Static parameters
 	double angleOfAttack{ 3.1415926535 * 5.0 / 180.0 };
@@ -55,6 +58,7 @@ int main()
 
 	// Construct mesh from inputs and create surface from mesh
 	Mesh mesh{ constructRectangularMesh(chord, span, chordwisePanels, spanwisePanels) };
+
 	Surface baseSurface{ mesh };
 
 	// Apply angle of attack

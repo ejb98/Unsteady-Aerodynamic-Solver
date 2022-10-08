@@ -143,6 +143,9 @@
     <ClCompile Include="cross.cpp" />
     <ClCompile Include="dot.cpp" />
     <ClCompile Include="influenceCoefficients.cpp" />
+    <ClCompile Include="insertColumn.cpp" />
+    <ClCompile Include="joinColumns.cpp" />
+    <ClCompile Include="lastColumn.cpp" />
     <ClCompile Include="linspace.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="meshgrid.cpp" />
@@ -180,6 +183,9 @@
     <ClInclude Include="dot.h" />
     <ClInclude Include="InducedVelocity.h" />
     <ClInclude Include="influenceCoefficients.h" />
+    <ClInclude Include="insertColumn.h" />
+    <ClInclude Include="joinColumns.h" />
+    <ClInclude Include="lastColumn.h" />
     <ClInclude Include="linspace.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Mesh.h" />
