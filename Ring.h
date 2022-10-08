@@ -3,6 +3,7 @@
 
 #include "Point.h"
 #include "Vector.h"
+#include "InducedVelocity.h"
 #include <array>
 
 class Ring
@@ -24,10 +25,14 @@ public:
 	void setVertices(const std::array<Point, 4>& vertices);
 
 	const Point& getCollocationPoint() const;
+	void setCollocationPoint(const Point& collocationPoint);
+
 	const Vector& getNormalVector() const;
 
 	double getVorticityStrength() const;
 	void setVorticityStrength(double vorticityStrength);
+
+	InducedVelocity induceVelocityOn(const Point& point, double vorticityStrength = 1.0) const;
 
 	void print() const;
 };

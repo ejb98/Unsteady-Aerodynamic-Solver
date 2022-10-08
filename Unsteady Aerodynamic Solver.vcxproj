@@ -133,6 +133,7 @@
     <ClCompile Include="calculateNormalVector.cpp" />
     <ClCompile Include="calculateRotationMatrix.cpp" />
     <ClCompile Include="calculateVector.cpp" />
+    <ClCompile Include="calculateVelocities.cpp" />
     <ClCompile Include="constructPanels.cpp" />
     <ClCompile Include="constructRectangularMesh.cpp" />
     <ClCompile Include="constructRings.cpp" />
@@ -146,8 +147,10 @@
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="printMatrix.cpp" />
     <ClCompile Include="Ring.cpp" />
+    <ClCompile Include="rotateMesh.cpp" />
     <ClCompile Include="Surface.cpp" />
     <ClCompile Include="System.cpp" />
+    <ClCompile Include="translateMesh.cpp" />
     <ClCompile Include="Vector.cpp" />
     <ClCompile Include="Velocity.cpp" />
     <ClCompile Include="Wake.cpp" />
@@ -161,6 +164,7 @@
     <ClInclude Include="calculateNormalVector.h" />
     <ClInclude Include="calculateRotationMatrix.h" />
     <ClInclude Include="calculateVector.h" />
+    <ClInclude Include="calculateVelocities.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="constructPanels.h" />
     <ClInclude Include="constructRectangularMesh.h" />
@@ -177,8 +181,10 @@
     <ClInclude Include="Position.h" />
     <ClInclude Include="printMatrix.h" />
     <ClInclude Include="Ring.h" />
+    <ClInclude Include="rotateMesh.h" />
     <ClInclude Include="Surface.h" />
     <ClInclude Include="System.h" />
+    <ClInclude Include="translateMesh.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="Velocity.h" />
     <ClInclude Include="Wake.h" />

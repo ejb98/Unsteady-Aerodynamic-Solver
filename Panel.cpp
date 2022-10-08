@@ -4,6 +4,7 @@
 #include <iostream>
 
 Panel::Panel() = default;
+
 Panel::Panel(const std::array<Point, 4>& vertices) :
 	m_vertices{ vertices }
 {
@@ -12,6 +13,7 @@ Panel::Panel(const std::array<Point, 4>& vertices) :
 }
 
 const std::array<Point, 4>& Panel::getVertices() const { return m_vertices; }
+
 void Panel::setVertices(const std::array<Point, 4>& vertices)
 {
 	m_vertices = vertices;

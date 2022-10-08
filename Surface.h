@@ -21,6 +21,13 @@ public:
 	const Mesh& getMesh() const;
 	void setMesh(const Mesh& mesh);
 
+	const std::vector<Ring>& getRings() const;
+	void setRings(const std::vector<Ring>& rings);
+
+	void translate(double xOffset, double yOffset, double zOffset);
+
+	void rotate(double roll, double pitch, double yaw);
+
 	void print() const;
 };
 

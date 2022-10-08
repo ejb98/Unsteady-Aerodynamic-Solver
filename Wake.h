@@ -2,17 +2,24 @@
 #define WAKE_H
 
 #include "Mesh.h"
+#include "Ring.h"
+#include <vector>
 
 class Wake
 {
 private:
 	Mesh m_mesh{};
 
+	std::vector<Ring> m_rings{};
+
 public:
 	Wake();
+	Wake(const Mesh& mesh);
 
 	const Mesh& getMesh() const;
 	void setMesh(const Mesh& mesh);
+
+	void print() const;
 };
 
 #endif
