@@ -99,6 +99,18 @@
     <ClCompile Include="calculateVelocities.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="normalVelocityDueToMotion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="influenceCoefficients.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="printVector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="solve.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mesh.h">
@@ -195,6 +207,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="calculateVelocities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="normalVelocityDueToMotion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="influenceCoefficients.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="printVector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="solve.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

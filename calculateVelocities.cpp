@@ -2,6 +2,8 @@
 #include "Ring.h"
 #include "Velocity.h"
 #include "Position.h"
+#include "Vector.h"
+#include "dot.h"
 #include <vector>
 #include <cassert>
 
@@ -56,12 +58,16 @@ void calculateVelocities(std::vector<Component>& history, double deltaTime)
                 }
             }
 
+            Vector currentNormalVector{ boundRingsHistory[step][index].getNormalVector() };
+            double normalVelocity{ dot(velocity, currentNormalVector) };
+
             // At this point the velocity for the collocation point in the current ring
             // in the group of rings in the current time step has been calculated. Now
             // we need to apply this velocity to the collocation point.
 
             Point newCollocationPoint{ boundRingsHistory[step][index].getCollocationPoint() };
             newCollocationPoint.velocity = velocity;
+            newCollocationPoint.normalVelocity = normalVelocity;
 
             // The position remains the same, the only member updated in the point is the velocity
             boundRingsHistory[step][index].setCollocationPoint(newCollocationPoint);

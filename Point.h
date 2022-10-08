@@ -8,6 +8,7 @@ struct Point
 {
 	Position position{};
 	Velocity velocity{};
+	double normalVelocity{};
 
 	void print() const;
 };

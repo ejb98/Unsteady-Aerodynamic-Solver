@@ -1,13 +1,30 @@
 #include "Mesh.h"
+#include "Matrix.h"
 #include "Surface.h"
 #include "Wake.h"
 #include "Component.h"
 #include "constructRectangularMesh.h"
 #include "calculateVelocities.h"
+#include "influenceCoefficients.h"
+#include "normalVelocityDueToMotion.h"
+#include "printMatrix.h"
+#include "printVector.h"
 #include "linspace.h"
+#include "solve.h" // See note*
 #include <iostream>
 #include <vector>
 #include <cmath>
+
+// *If compiling with Visual Studio, you will need to add /bigobj as an
+// additional option in the Properties > Configuration Properties >
+// C/C++ > Command Line > Additional Options box. You will also need to
+// download and extract the Eigen C++ linear algebra library, then go to
+// Properties > Configuration Properties > C/C++ > General > Additional
+// Include Directories and add the folder that you extracted. These steps
+// are needed because the solve.cpp function uses the Eigen library. If you
+// are compiling from the command line, modify "#include <Eigen/Dense> in
+// solve.cpp to "#include "eigen-#.#.#/Eigen/Dense" if you have placed the
+// extracted eigen folder in the same directory as the .cpp and .h files
 
 int main()
 {
@@ -18,13 +35,13 @@ int main()
 	double span{ 6.0 };
 
 	// Number of panels
-	int chordwisePanels{ 12 };
-	int spanwisePanels{ 10 };
+	int chordwisePanels{ 4 };
+	int spanwisePanels{ 12 };
 
 	// Time parameters
 	double startTime{ 0.0 };
 	double endTime{ 2.0 };
-	int timeSteps{ 240 };
+	int timeSteps{ 75 };
 
 	// Static parameters
 	double angleOfAttack{ 3.1415926535 * 5.0 / 180.0 };
@@ -36,6 +53,7 @@ int main()
 
 	// ****** INPUT SECTION END ******
 
+	// Construct mesh from inputs and create surface from mesh
 	Mesh mesh{ constructRectangularMesh(chord, span, chordwisePanels, spanwisePanels) };
 	Surface baseSurface{ mesh };
 
@@ -46,9 +64,6 @@ int main()
 	std::vector<double> time{ linspace(startTime, endTime, timeSteps) };
 
 	// Create history of component
-
-	std::cout << "Calculating Motion History... ";
-
 	std::vector<Component> history(time.size());
 
 	for (int step{ 0 }; step < history.size(); ++step)
@@ -63,16 +78,33 @@ int main()
 		history[step] = component;
 	}
 
-	std::cout << "Done!\n";
-
-	std::cout << "Calculating Velocities... ";
 	calculateVelocities(history, time[1] - time[0]);
-	std::cout << "Done!\n";
 
-	for (const auto& component : history)
+	// ***** MAIN TIME LOOP START *****
+
+	for (int step{ 0 }; step < history.size(); ++step)
 	{
-		component.surface.getRings()[0].getCollocationPoint().velocity.print();
+		std::cout << "Step " << step << "...\n";
+
+		// Solution for vorticity strengths of the bound vortex rings
+		std::vector<double> vNormalSurfaceMotion{ normalVelocityDueToMotion(history[step]) };
+		Matrix aSurfaceSurface{ influenceCoefficients(history[step]) };
+		std::vector<double> gammaSurface(vNormalSurfaceMotion.size());
+
+		if (step == 1)
+		{
+			gammaSurface = solve(aSurfaceSurface, vNormalSurfaceMotion);
+		}
+		else if (step != 0)
+		{
+			// Need to swap this out with the correct equation
+			gammaSurface = solve(aSurfaceSurface, vNormalSurfaceMotion);
+		}
+
+		// Wake Shedding
 	}
+
+	// ****** MAIN TIME LOOP END ******
 
 	return 0;
 }

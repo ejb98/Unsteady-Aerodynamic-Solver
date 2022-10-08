@@ -104,6 +104,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\ethan\Projects\cpp\eigen-3.4.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -118,6 +120,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\ethan\Projects\cpp\eigen-3.4.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -139,15 +142,19 @@
     <ClCompile Include="constructRings.cpp" />
     <ClCompile Include="cross.cpp" />
     <ClCompile Include="dot.cpp" />
+    <ClCompile Include="influenceCoefficients.cpp" />
     <ClCompile Include="linspace.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="meshgrid.cpp" />
+    <ClCompile Include="normalVelocityDueToMotion.cpp" />
     <ClCompile Include="Panel.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="printMatrix.cpp" />
+    <ClCompile Include="printVector.cpp" />
     <ClCompile Include="Ring.cpp" />
     <ClCompile Include="rotateMesh.cpp" />
+    <ClCompile Include="solve.cpp" />
     <ClCompile Include="Surface.cpp" />
     <ClCompile Include="System.cpp" />
     <ClCompile Include="translateMesh.cpp" />
@@ -172,16 +179,20 @@
     <ClInclude Include="cross.h" />
     <ClInclude Include="dot.h" />
     <ClInclude Include="InducedVelocity.h" />
+    <ClInclude Include="influenceCoefficients.h" />
     <ClInclude Include="linspace.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="meshgrid.h" />
+    <ClInclude Include="normalVelocityDueToMotion.h" />
     <ClInclude Include="Panel.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="printMatrix.h" />
+    <ClInclude Include="printVector.h" />
     <ClInclude Include="Ring.h" />
     <ClInclude Include="rotateMesh.h" />
+    <ClInclude Include="solve.h" />
     <ClInclude Include="Surface.h" />
     <ClInclude Include="System.h" />
     <ClInclude Include="translateMesh.h" />
