@@ -37,10 +37,10 @@ int main()
 	// ****** INPUT SECTION END ******
 
 	Mesh mesh{ constructRectangularMesh(chord, span, chordwisePanels, spanwisePanels) };
-	Surface surface{ mesh };
+	Surface baseSurface{ mesh };
 
 	// Apply angle of attack
-	surface.rotate(0.0, angleOfAttack, 0.0);
+	baseSurface.rotate(0.0, angleOfAttack, 0.0);
 
 	// Create time vector
 	std::vector<double> time{ linspace(startTime, endTime, timeSteps) };
@@ -50,6 +50,8 @@ int main()
 
 	for (int step{ 0 }; step < history.size(); ++step)
 	{
+		Surface surface{ baseSurface };
+
 		surface.rotate(rollAmplitude * std::sin(rollFrequency * time[step]), 0.0, 0.0);
 		surface.translate(xVelocity * time[step], 0.0, 0.0);
 		
@@ -59,6 +61,11 @@ int main()
 	}
 
 	calculateVelocities(history, time);
+
+	for (const auto& component : history)
+	{
+		component.surface.getRings()[0].getCollocationPoint().velocity.print();
+	}
 
 	return 0;
 }
