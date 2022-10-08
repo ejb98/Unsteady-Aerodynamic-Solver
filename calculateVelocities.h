@@ -5,6 +5,6 @@
 #include <vector>
 
 // Note: This function will directly modify the collocation point velocities for every step of the history
-void calculateVelocities(std::vector<Component>& history, const std::vector<double>& time);
+void calculateVelocities(std::vector<Component>& history, double deltaTime);
 
 #endif

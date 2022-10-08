@@ -6,12 +6,9 @@
 #include <cassert>
 
 // Note: This function will directly modify the collocation point velocities for every step of the history
-void calculateVelocities(std::vector<Component>& history, const std::vector<double>& time)
+void calculateVelocities(std::vector<Component>& history, double deltaTime)
 {
-    assert(history.size() == time.size() && "calculateVelocities failed, history and time must be the same size");
-
-    int numberOfTimeSteps{ static_cast<int>(time.size()) };
-    double deltaTime{ time[1] - time[0] };
+    int numberOfTimeSteps{ static_cast<int>(history.size()) };
 
     std::vector<std::vector<Ring>> boundRingsHistory(numberOfTimeSteps);
 

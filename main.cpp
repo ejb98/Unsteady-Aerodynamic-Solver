@@ -66,7 +66,7 @@ int main()
 	std::cout << "Done!\n";
 
 	std::cout << "Calculating Velocities... ";
-	calculateVelocities(history, time);
+	calculateVelocities(history, time[1] - time[0]);
 	std::cout << "Done!\n";
 
 	for (const auto& component : history)
