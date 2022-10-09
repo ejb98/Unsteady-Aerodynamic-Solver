@@ -165,7 +165,7 @@ int main()
 
 			for (int row{ 0 }; row < rows; ++row)
 			{
-				for (int column{ 0 }; column < columns; ++column)
+				for (int column{ 1 }; column < columns; ++column)
 				{
 					Position position{ xMatrix[row][column], yMatrix[row][column], zMatrix[row][column] };
 					Point point{ position };
@@ -193,7 +193,7 @@ int main()
 
 			for (int row{ 0 }; row < rows; ++row)
 			{
-				for (int column{ 0 }; column < columns; ++column)
+				for (int column{ 1 }; column < columns; ++column)
 				{
 					xMatrix[row][column] += xVelocity[row][column] * deltaTime;
 					yMatrix[row][column] += yVelocity[row][column] * deltaTime;
