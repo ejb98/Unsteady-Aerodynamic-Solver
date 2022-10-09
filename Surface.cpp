@@ -30,6 +30,8 @@ void Surface::setPanelMesh(const Mesh& panelMesh)
 	m_rings = constructRings(m_ringMesh);
 }
 
+const Mesh& Surface::getRingMesh() const { return m_ringMesh; }
+
 const std::vector<Ring>& Surface::getRings() const { return m_rings; }
 void Surface::setRings(const std::vector<Ring>& rings) { m_rings = rings; }
 

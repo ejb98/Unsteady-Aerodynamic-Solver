@@ -19,6 +19,8 @@ public:
 	const Mesh& getMesh() const;
 	void setMesh(const Mesh& mesh);
 
+	const std::vector<Ring>& getRings() const;
+
 	void print() const;
 };
 

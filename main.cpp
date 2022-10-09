@@ -108,8 +108,43 @@ int main()
 		// Wake Shedding
 		if (step >= 1)
 		{
-			// Need to have a panel mesh and a ring mesh in Surface class
-			//std::vector<double> previousTrailingSegmentX{lastColumn(history[step - 1].surface.)}
+			std::vector<double> currentTrailingSegmentX{ lastColumn(history[step].surface.getRingMesh().xMatrix) };
+			std::vector<double> currentTrailingSegmentY{ lastColumn(history[step].surface.getRingMesh().yMatrix) };
+			std::vector<double> currentTrailingSegmentZ{ lastColumn(history[step].surface.getRingMesh().zMatrix) };
+
+			if (step == 1)
+			{
+				std::vector<double> previousTrailingSegmentX{ lastColumn(history[step - 1].surface.getRingMesh().xMatrix) };
+				std::vector<double> previousTrailingSegmentY{ lastColumn(history[step - 1].surface.getRingMesh().yMatrix) };
+				std::vector<double> previousTrailingSegmentZ{ lastColumn(history[step - 1].surface.getRingMesh().zMatrix) };
+
+				Matrix xMatrix{ joinColumns(currentTrailingSegmentX, previousTrailingSegmentX) };
+				Matrix yMatrix{ joinColumns(currentTrailingSegmentY, previousTrailingSegmentY) };
+				Matrix zMatrix{ joinColumns(currentTrailingSegmentZ, previousTrailingSegmentZ) };
+
+				Mesh wakeMesh{ xMatrix, yMatrix, zMatrix };
+
+				Wake wake{ wakeMesh };
+
+				std::vector<Ring> wakeRings{ wake.getRings() };
+
+				int numberOfWakeRings{ static_cast<int>(wakeRings.size()) };
+				int numberOfBoundRings{ static_cast<int>(history[step - 1].surface.getRings().size()) };
+				int indexOfLastBoundRing{ numberOfBoundRings - 1 };
+				int indexOfFirstBoundRingOnTrailingEdge{ indexOfLastBoundRing - numberOfWakeRings + 1};
+
+				int count{};
+				for (int index{ indexOfFirstBoundRingOnTrailingEdge }; index < numberOfBoundRings; ++index)
+				{
+					wakeRings[count].setVorticityStrength(history[step - 1].surface.getRings()[index].getVorticityStrength());
+					++count;
+				}
+
+			}
+			else
+			{
+
+			}
 		}
 	}
 

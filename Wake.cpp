@@ -20,6 +20,8 @@ void Wake::setMesh(const Mesh& mesh)
 	m_rings = constructRings(m_mesh);
 }
 
+const std::vector<Ring>& Wake::getRings() const { return m_rings; }
+
 void Wake::print() const
 {
 	std::cout << "X Matrix:\n";

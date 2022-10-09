@@ -23,7 +23,6 @@ public:
 	void setPanelMesh(const Mesh& panelMesh);
 
 	const Mesh& getRingMesh() const;
-	void setRingMesh(const Mesh& panelMesh);
 
 	const std::vector<Ring>& getRings() const;
 	void setRings(const std::vector<Ring>& rings);
