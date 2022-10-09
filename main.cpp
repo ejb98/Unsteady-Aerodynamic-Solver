@@ -10,6 +10,9 @@
 #include "printMatrix.h"
 #include "printVector.h"
 #include "linspace.h"
+#include "difference.h"
+#include "zeros.h"
+#include "dot.h"
 #include "shedWake.h"
 #include "solve.h" // See note*
 #include <iostream>
@@ -68,6 +71,7 @@ int main()
 
 	// Create time vector
 	std::vector<double> time{ linspace(startTime, endTime, timeSteps) };
+	double deltaTime{ time[1] - time[0] };
 
 	// Create history of component
 	std::vector<Component> history(time.size());
@@ -84,7 +88,7 @@ int main()
 		history[step] = component;
 	}
 
-	calculateVelocities(history, time[1] - time[0]);
+	calculateVelocities(history, deltaTime);
 
 	// ***** MAIN TIME LOOP START *****
 
@@ -103,25 +107,124 @@ int main()
 		}
 		else if (step != 0)
 		{
-			// Need to swap this out with the correct equation
-			gammaSurface = solve(aSurfaceSurface, vNormalSurfaceMotion);
+			std::vector<double> vNormalWakeOnWing(vNormalSurfaceMotion.size());
+
+			int index{};
+			for (const auto& boundVortexRing : history[step].surface.getRings())
+			{
+
+				for (const auto& wakeVortexRing : history[step - 1].wake.getRings())
+				{
+					InducedVelocity inducedVelocity{ wakeVortexRing.induceVelocityOn(boundVortexRing.getCollocationPoint(),
+						wakeVortexRing.getVorticityStrength()) };
+
+					vNormalWakeOnWing[index] += dot(inducedVelocity.totalVelocity, boundVortexRing.getNormalVector());
+				}
+
+				++index;
+			}
+
+			gammaSurface = solve(aSurfaceSurface, difference(vNormalSurfaceMotion, vNormalWakeOnWing));
 		}
 
-		// Wake Shedding
+		// Assign vorticity strengths to each bound vortex ring
+		std::vector<Ring> boundRings{ history[step].surface.getRings() };
+
+		for (int index{ 0 }; index < gammaSurface.size(); ++index)
+		{
+			boundRings[index].setVorticityStrength(gammaSurface[index]);
+		}
+
+		history[step].surface.setRings(boundRings);
+
+		// Wake Shedding and Rollup
 		if (step >= 1)
 		{
+			// Wake Shedding
 			shedWake(history, step);
+
+			// Wake Rollup
+			Mesh wakeMesh{ history[step].wake.getMesh() };
+
+			Matrix xMatrix{ wakeMesh.xMatrix };
+			Matrix yMatrix{ wakeMesh.yMatrix };
+			Matrix zMatrix{ wakeMesh.zMatrix };
+
+			int rows{ static_cast<int>(xMatrix.size()) };
+			int columns{ static_cast<int>(xMatrix[0].size())};
+
+			Matrix xVelocity{ zeros(rows, columns) };
+			Matrix yVelocity{ zeros(rows, columns) };
+			Matrix zVelocity{ zeros(rows, columns) };
+
+			for (int row{ 0 }; row < rows; ++row)
+			{
+				for (int column{ 0 }; column < columns; ++column)
+				{
+					Position position{ xMatrix[row][column], yMatrix[row][column], zMatrix[row][column] };
+					Point point{ position };
+
+					for (const auto& boundVortexRing : history[step].surface.getRings())
+					{
+						InducedVelocity inducedVelocity{ boundVortexRing.induceVelocityOn(point, boundVortexRing.getVorticityStrength()) };
+
+						xVelocity[row][column] += inducedVelocity.totalVelocity.x;
+						yVelocity[row][column] += inducedVelocity.totalVelocity.y;
+						zVelocity[row][column] += inducedVelocity.totalVelocity.z;
+					}
+
+					for (const auto& wakeVortexRing : history[step].wake.getRings())
+					{
+						InducedVelocity inducedVelocity{ wakeVortexRing.induceVelocityOn(point, wakeVortexRing.getVorticityStrength()) };
+
+						xVelocity[row][column] += inducedVelocity.totalVelocity.x;
+						yVelocity[row][column] += inducedVelocity.totalVelocity.y;
+						zVelocity[row][column] += inducedVelocity.totalVelocity.z;
+					}
+
+				}
+			}
+
+			for (int row{ 0 }; row < rows; ++row)
+			{
+				for (int column{ 0 }; column < columns; ++column)
+				{
+					std::cout << "[" << xVelocity[row][column] << ", " << yVelocity[row][column] << ", " << zVelocity[row][column] << "] m/s\n";
+
+					xMatrix[row][column] += xVelocity[row][column] * deltaTime;
+					yMatrix[row][column] += yVelocity[row][column] * deltaTime;
+					zMatrix[row][column] += zVelocity[row][column] * deltaTime;
+				}
+			}
+
+			Mesh newWakeMesh{ xMatrix, yMatrix, zMatrix };
+
+			Wake newWake{ newWakeMesh };
+
+			std::vector<Ring> newRings{ newWake.getRings() };
+
+			int index{};
+			for (auto& ring : newRings)
+			{
+				ring.setVorticityStrength(history[step].wake.getRings()[index].getVorticityStrength());
+				++index;
+			}
+
+			newWake.setRings(newRings);
+
+			history[step].wake = newWake;
 		}
 
-		std::string panelFileName{ filePath + "panels_" + std::to_string(step) + ".csv" };
-		std::string boundRingFileName{ filePath + "bound_rings_" + std::to_string(step) + ".csv" };
-		std::string wakeRingFileName{ filePath + "wake_rings_" + std::to_string(step) + ".csv" };
+		// File output
+		std::string stepString{ std::to_string(step) };
+		std::string panelFileName{ "Panels_" + stepString + ".csv" };
+		std::string boundRingFileName{ "Bound_Rings_" + stepString + ".csv" };
+		std::string wakeRingFileName{ "Wake_Rings_" + stepString + ".csv" };
 
-		history[step].surface.getPanelMesh().writeToFile(panelFileName);
-		history[step].surface.getRingMesh().writeToFile(boundRingFileName);
-
-		if (step >= 1)
-			history[step].wake.getMesh().writeToFile(wakeRingFileName);
+		//if (step == 74)
+		//	history[step].surface.getPanelMesh().writeToFiles(filePath, panelFileName);
+		//	history[step].surface.getRingMesh().writeToFiles(filePath, boundRingFileName);
+		//	history[step].wake.getMesh().writeToFiles(filePath, wakeRingFileName);
 	}
 
 	// ****** MAIN TIME LOOP END ******

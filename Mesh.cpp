@@ -1,21 +1,34 @@
 #include "Mesh.h"
+#include "Matrix.h"
 #include <fstream>
 #include <iomanip>
+#include <string>
+#include <array>
 
-void Mesh::writeToFile(std::string& fileName) const
+void Mesh::writeToFiles(const std::string& filePath, const std::string& fileName) const
 {
-	std::ofstream file(fileName);
+	std::array<std::string, 3> axes{ "x", "y", "z" };
+	std::array<Matrix, 3> matrices{ xMatrix, yMatrix, zMatrix };
 
 	int rows{ static_cast<int>(xMatrix.size()) };
 	int columns{ static_cast<int>(xMatrix[0].size())};
 
-	file << "x,y,z\n";
-	for (int row{ 0 }; row < rows; ++row)
+	for (int index{ 0 }; index < 3; ++index)
 	{
-		for (int column{ 0 }; column < columns; ++column)
+		std::ofstream file(filePath + axes[index] + fileName);
+
+		for (int row{ 0 }; row < rows; ++row)
 		{
-			file << std::setprecision(6) << std::fixed <<
-				xMatrix[row][column] << ',' << yMatrix[row][column] << ',' << zMatrix[row][column] << '\n';
+			for (int column{ 0 }; column < columns; ++column)
+			{
+				file << matrices[index][row][column];
+
+				if (column < columns - 1)
+				{
+					file << ',';
+				}
+			}
+			file << '\n';
 		}
 	}
 }

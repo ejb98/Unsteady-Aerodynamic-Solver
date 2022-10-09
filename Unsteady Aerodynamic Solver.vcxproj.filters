@@ -129,6 +129,9 @@
     <ClCompile Include="Mesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="difference.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mesh.h">
@@ -252,6 +255,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="shedWake.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="difference.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
