@@ -15,6 +15,7 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <string>
 
 // *If compiling with Visual Studio, you will need to add /bigobj as an
 // additional option in the Properties > Configuration Properties >
@@ -31,18 +32,21 @@ int main()
 {
 	// ***** INPUT SECTION START *****
 	
+	// File path for output CSV files
+	std::string filePath{ "C:\\Users\\ethan\\Projects\\cpp\\csv-files\\" };
+
 	// Rectangular wing dimensions
 	double chord{ 1.0 };
 	double span{ 6.0 };
 
 	// Number of panels
-	int chordwisePanels{ 2 };
-	int spanwisePanels{ 2 };
+	int chordwisePanels{ 4 };
+	int spanwisePanels{ 12 };
 
 	// Time parameters
 	double startTime{ 0.0 };
-	double endTime{ 2.0 };
-	int timeSteps{ 10 };
+	double endTime{ 1.875 };
+	int timeSteps{ 75 };
 
 	// Static parameters
 	double angleOfAttack{ 3.1415926535 * 5.0 / 180.0 };
@@ -60,7 +64,7 @@ int main()
 	Surface baseSurface{ mesh };
 
 	// Apply angle of attack
-	//baseSurface.rotate(0.0, angleOfAttack, 0.0);
+	baseSurface.rotate(0.0, angleOfAttack, 0.0);
 
 	// Create time vector
 	std::vector<double> time{ linspace(startTime, endTime, timeSteps) };
@@ -72,7 +76,7 @@ int main()
 	{
 		Surface surface{ baseSurface };
 
-		//surface.rotate(rollAmplitude * std::sin(rollFrequency * time[step]), 0.0, 0.0);
+		surface.rotate(rollAmplitude * std::sin(rollFrequency * time[step]), 0.0, 0.0);
 		surface.translate(xVelocity * time[step], 0.0, 0.0);
 		
 		Component component{ surface };
@@ -107,8 +111,17 @@ int main()
 		if (step >= 1)
 		{
 			shedWake(history, step);
-			//rollupWake(history[step]);
 		}
+
+		std::string panelFileName{ filePath + "panels_" + std::to_string(step) + ".csv" };
+		std::string boundRingFileName{ filePath + "bound_rings_" + std::to_string(step) + ".csv" };
+		std::string wakeRingFileName{ filePath + "wake_rings_" + std::to_string(step) + ".csv" };
+
+		history[step].surface.getPanelMesh().writeToFile(panelFileName);
+		history[step].surface.getRingMesh().writeToFile(boundRingFileName);
+
+		if (step >= 1)
+			history[step].wake.getMesh().writeToFile(wakeRingFileName);
 	}
 
 	// ****** MAIN TIME LOOP END ******

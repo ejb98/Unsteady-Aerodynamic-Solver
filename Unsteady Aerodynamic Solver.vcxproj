@@ -149,6 +149,7 @@
     <ClCompile Include="lastColumn.cpp" />
     <ClCompile Include="linspace.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="meshgrid.cpp" />
     <ClCompile Include="normalVelocityDueToMotion.cpp" />
     <ClCompile Include="Panel.cpp" />

@@ -10,7 +10,7 @@ struct Mesh
 	Matrix yMatrix{};
 	Matrix zMatrix{};
 
-	void writeToFile(std::string& fileName);
+	void writeToFile(std::string& fileName) const;
 };
 
 #endif
