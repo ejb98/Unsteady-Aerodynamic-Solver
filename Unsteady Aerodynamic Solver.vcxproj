@@ -158,6 +158,7 @@
     <ClCompile Include="printVector.cpp" />
     <ClCompile Include="Ring.cpp" />
     <ClCompile Include="rotateMesh.cpp" />
+    <ClCompile Include="shedWake.cpp" />
     <ClCompile Include="solve.cpp" />
     <ClCompile Include="Surface.cpp" />
     <ClCompile Include="System.cpp" />
@@ -200,6 +201,7 @@
     <ClInclude Include="printVector.h" />
     <ClInclude Include="Ring.h" />
     <ClInclude Include="rotateMesh.h" />
+    <ClInclude Include="shedWake.h" />
     <ClInclude Include="solve.h" />
     <ClInclude Include="Surface.h" />
     <ClInclude Include="System.h" />

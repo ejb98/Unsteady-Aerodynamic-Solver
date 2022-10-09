@@ -20,6 +20,7 @@ public:
 	void setMesh(const Mesh& mesh);
 
 	const std::vector<Ring>& getRings() const;
+	void setRings(const std::vector<Ring>& rings);
 
 	void print() const;
 };

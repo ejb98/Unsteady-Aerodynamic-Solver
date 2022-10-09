@@ -21,6 +21,7 @@ void Wake::setMesh(const Mesh& mesh)
 }
 
 const std::vector<Ring>& Wake::getRings() const { return m_rings; }
+void Wake::setRings(const std::vector<Ring>& rings) { m_rings = rings; }
 
 void Wake::print() const
 {
