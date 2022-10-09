@@ -99,6 +99,7 @@ int main()
 		// Solution for vorticity strengths of the bound vortex rings
 		std::vector<double> vNormalSurfaceMotion{ normalVelocityDueToMotion(history[step]) };
 		Matrix aSurfaceSurface{ influenceCoefficients(history[step]) };
+
 		std::vector<double> gammaSurface(vNormalSurfaceMotion.size());
 
 		if (step == 1)
@@ -107,6 +108,7 @@ int main()
 		}
 		else if (step != 0)
 		{
+			std::vector<Velocity> vWakeOnWing(vNormalSurfaceMotion.size());
 			std::vector<double> vNormalWakeOnWing(vNormalSurfaceMotion.size());
 
 			int index{};
@@ -118,8 +120,12 @@ int main()
 					InducedVelocity inducedVelocity{ wakeVortexRing.induceVelocityOn(boundVortexRing.getCollocationPoint(),
 						wakeVortexRing.getVorticityStrength()) };
 
-					vNormalWakeOnWing[index] += dot(inducedVelocity.totalVelocity, boundVortexRing.getNormalVector());
+					vWakeOnWing[index].x += inducedVelocity.totalVelocity.x;
+					vWakeOnWing[index].y += inducedVelocity.totalVelocity.y;
+					vWakeOnWing[index].z += inducedVelocity.totalVelocity.z;
 				}
+
+				vNormalWakeOnWing[index] += dot(vWakeOnWing[index], boundVortexRing.getNormalVector());
 
 				++index;
 			}
@@ -189,8 +195,6 @@ int main()
 			{
 				for (int column{ 0 }; column < columns; ++column)
 				{
-					std::cout << "[" << xVelocity[row][column] << ", " << yVelocity[row][column] << ", " << zVelocity[row][column] << "] m/s\n";
-
 					xMatrix[row][column] += xVelocity[row][column] * deltaTime;
 					yMatrix[row][column] += yVelocity[row][column] * deltaTime;
 					zMatrix[row][column] += zVelocity[row][column] * deltaTime;
@@ -221,10 +225,12 @@ int main()
 		std::string boundRingFileName{ "Bound_Rings_" + stepString + ".csv" };
 		std::string wakeRingFileName{ "Wake_Rings_" + stepString + ".csv" };
 
-		//if (step == 74)
-		//	history[step].surface.getPanelMesh().writeToFiles(filePath, panelFileName);
-		//	history[step].surface.getRingMesh().writeToFiles(filePath, boundRingFileName);
-		//	history[step].wake.getMesh().writeToFiles(filePath, wakeRingFileName);
+		if (step == 74)
+		{
+			history[step].surface.getPanelMesh().writeToFiles(filePath, panelFileName);
+			history[step].surface.getRingMesh().writeToFiles(filePath, boundRingFileName);
+			history[step].wake.getMesh().writeToFiles(filePath, wakeRingFileName);
+		}
 	}
 
 	// ****** MAIN TIME LOOP END ******

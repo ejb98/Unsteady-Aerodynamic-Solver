@@ -30,8 +30,8 @@ Velocity biotSavart(const Point& point, const Point& point1, const Point& point2
 	double r0DotR1{ dot(r0, r1) };
 	double r0DotR2{ dot(r0, r2) };
 
-	double coefficient{ vorticityStrength / (4.0 * pi * r1CrossR2Squared) *
-						(r0DotR1 / r1Magnitude) * (r0DotR2 / r2Magnitude) };
+	double coefficient{ (vorticityStrength / (4.0 * pi * r1CrossR2Squared)) *
+						((r0DotR1 / r1Magnitude) - (r0DotR2 / r2Magnitude)) };
 
 	velocity.x = r1CrossR2.x * coefficient;
 	velocity.y = r1CrossR2.y * coefficient;
