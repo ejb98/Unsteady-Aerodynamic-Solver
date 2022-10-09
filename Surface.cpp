@@ -1,5 +1,6 @@
 #include "Surface.h"
 #include "Mesh.h"
+#include "constructBoundRingMesh.h"
 #include "constructPanels.h"
 #include "constructRings.h"
 #include "translateMesh.h"
@@ -11,20 +12,22 @@
 
 Surface::Surface() = default;
 
-Surface::Surface(const Mesh& mesh) :
-	m_mesh{ mesh }
+Surface::Surface(const Mesh& panelMesh) :
+	m_panelMesh{ panelMesh }
 {
-	m_panels = constructPanels(m_mesh);
-	m_rings = constructRings(m_panels);
+	m_ringMesh = constructBoundRingMesh(m_panelMesh);
+	m_panels = constructPanels(m_panelMesh);
+	m_rings = constructRings(m_ringMesh);
 }
 
-const Mesh& Surface::getMesh() const { return m_mesh; }
+const Mesh& Surface::getPanelMesh() const { return m_panelMesh; }
 
-void Surface::setMesh(const Mesh& mesh)
+void Surface::setPanelMesh(const Mesh& panelMesh)
 {
-	m_mesh = mesh;
-	m_panels = constructPanels(m_mesh);
-	m_rings = constructRings(m_panels);
+	m_panelMesh = panelMesh;
+	m_ringMesh = constructBoundRingMesh(m_panelMesh);
+	m_panels = constructPanels(m_panelMesh);
+	m_rings = constructRings(m_ringMesh);
 }
 
 const std::vector<Ring>& Surface::getRings() const { return m_rings; }
@@ -32,12 +35,12 @@ void Surface::setRings(const std::vector<Ring>& rings) { m_rings = rings; }
 
 void Surface::translate(double xOffset, double yOffset, double zOffset)
 {
-	setMesh(translateMesh(m_mesh, xOffset, yOffset, zOffset));
+	setPanelMesh(translateMesh(m_panelMesh, xOffset, yOffset, zOffset));
 }
 
 void Surface::rotate(double roll, double pitch, double yaw)
 {
-	setMesh(rotateMesh(m_mesh, roll, pitch, yaw));
+	setPanelMesh(rotateMesh(m_panelMesh, roll, pitch, yaw));
 }
 
 void Surface::print() const

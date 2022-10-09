@@ -137,6 +137,7 @@
     <ClCompile Include="calculateRotationMatrix.cpp" />
     <ClCompile Include="calculateVector.cpp" />
     <ClCompile Include="calculateVelocities.cpp" />
+    <ClCompile Include="constructBoundRingMesh.cpp" />
     <ClCompile Include="constructPanels.cpp" />
     <ClCompile Include="constructRectangularMesh.cpp" />
     <ClCompile Include="constructRings.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="calculateVector.h" />
     <ClInclude Include="calculateVelocities.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="constructBoundRingMesh.h" />
     <ClInclude Include="constructPanels.h" />
     <ClInclude Include="constructRectangularMesh.h" />
     <ClInclude Include="constructRings.h" />

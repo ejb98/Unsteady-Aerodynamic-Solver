@@ -106,6 +106,11 @@ int main()
 		}
 
 		// Wake Shedding
+		if (step >= 1)
+		{
+			// Need to have a panel mesh and a ring mesh in Surface class
+			//std::vector<double> previousTrailingSegmentX{lastColumn(history[step - 1].surface.)}
+		}
 	}
 
 	// ****** MAIN TIME LOOP END ******

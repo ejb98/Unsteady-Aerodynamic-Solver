@@ -9,17 +9,21 @@
 class Surface
 {
 private:
-	Mesh m_mesh{};
+	Mesh m_panelMesh{};
+	Mesh m_ringMesh{};
 
 	std::vector<Panel> m_panels{};
 	std::vector<Ring> m_rings{};
 
 public:
 	Surface();
-	Surface(const Mesh& mesh);
+	Surface(const Mesh& panelMesh);
 
-	const Mesh& getMesh() const;
-	void setMesh(const Mesh& mesh);
+	const Mesh& getPanelMesh() const;
+	void setPanelMesh(const Mesh& panelMesh);
+
+	const Mesh& getRingMesh() const;
+	void setRingMesh(const Mesh& panelMesh);
 
 	const std::vector<Ring>& getRings() const;
 	void setRings(const std::vector<Ring>& rings);
