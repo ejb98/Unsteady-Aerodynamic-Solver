@@ -2,6 +2,7 @@
 #include "Mesh.h"
 #include "constructRings.h"
 #include "printMatrix.h"
+#include "writeRingsToFile.h"
 #include <iostream>
 
 Wake::Wake() = default;
@@ -44,4 +45,9 @@ void Wake::print() const
 		ring.print();
 		std::cout << '\n';
 	}
+}
+
+void Wake::saveRings(const std::string& fileName) const
+{
+	writeRingsToFile(m_rings, fileName);
 }

@@ -4,6 +4,7 @@
 #include "Mesh.h"
 #include "Ring.h"
 #include <vector>
+#include <string>
 
 class Wake
 {
@@ -23,6 +24,8 @@ public:
 	void setRings(const std::vector<Ring>& rings);
 
 	void print() const;
+
+	void saveRings(const std::string& fileName) const;
 };
 
 #endif

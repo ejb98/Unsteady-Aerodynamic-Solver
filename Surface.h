@@ -32,6 +32,10 @@ public:
 	void rotate(double roll, double pitch, double yaw);
 
 	void print() const;
+
+	void savePanels(const std::string& filename) const;
+
+	void saveRings(const std::string& filename) const;
 };
 
 #endif

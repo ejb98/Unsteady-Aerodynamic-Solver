@@ -26,6 +26,8 @@ const Vector& Panel::getNormalVector() const { return m_normalVector; }
 double Panel::getPressure() const { return m_pressure; }
 void Panel::setPressure(double pressure) { m_pressure = pressure; }
 
+double Panel::getArea() const { return m_area; }
+
 void Panel::print() const
 {
 	std::cout << "Normal Vector: ";

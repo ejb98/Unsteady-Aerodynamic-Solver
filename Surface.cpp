@@ -5,9 +5,12 @@
 #include "constructRings.h"
 #include "translateMesh.h"
 #include "rotateMesh.h"
-#include "printMatrix.h"
+#include "writePanelsToFile.h"
+#include "writeRingsToFile.h"
 #include <vector>
 #include <array>
+#include <fstream>
+#include <iomanip>
 #include <iostream>
 
 Surface::Surface() = default;
@@ -62,4 +65,14 @@ void Surface::print() const
 		ring.print();
 		std::cout << '\n';
 	}
+}
+
+void Surface::savePanels(const std::string& fileName) const
+{
+	writePanelsToFile(m_panels, fileName);
+}
+
+void Surface::saveRings(const std::string& fileName) const
+{
+	writeRingsToFile(m_rings, fileName);
 }

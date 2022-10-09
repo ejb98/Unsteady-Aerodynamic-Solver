@@ -27,6 +27,8 @@ public:
 	double getPressure() const;
 	void setPressure(double pressure);
 
+	double getArea() const;
+
 	void print() const;
 };
 

@@ -151,7 +151,6 @@
     <ClCompile Include="lastColumn.cpp" />
     <ClCompile Include="linspace.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="meshgrid.cpp" />
     <ClCompile Include="normalVelocityDueToMotion.cpp" />
     <ClCompile Include="Panel.cpp" />
@@ -169,6 +168,8 @@
     <ClCompile Include="Vector.cpp" />
     <ClCompile Include="Velocity.cpp" />
     <ClCompile Include="Wake.cpp" />
+    <ClCompile Include="writePanelsToFile.cpp" />
+    <ClCompile Include="writeRingsToFile.cpp" />
     <ClCompile Include="zeros.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -213,6 +214,8 @@
     <ClInclude Include="Vector.h" />
     <ClInclude Include="Velocity.h" />
     <ClInclude Include="Wake.h" />
+    <ClInclude Include="writePanelsToFile.h" />
+    <ClInclude Include="writeRingsToFile.h" />
     <ClInclude Include="zeros.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

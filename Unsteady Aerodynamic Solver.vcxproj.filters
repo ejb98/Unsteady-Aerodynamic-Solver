@@ -126,10 +126,13 @@
     <ClCompile Include="shedWake.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Mesh.cpp">
+    <ClCompile Include="difference.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="difference.cpp">
+    <ClCompile Include="writePanelsToFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="writeRingsToFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -258,6 +261,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="difference.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="writePanelsToFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="writeRingsToFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

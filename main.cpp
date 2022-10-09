@@ -217,19 +217,14 @@ int main()
 			newWake.setRings(newRings);
 
 			history[step].wake = newWake;
-		}
 
-		// File output
-		std::string stepString{ std::to_string(step) };
-		std::string panelFileName{ "Panels_" + stepString + ".csv" };
-		std::string boundRingFileName{ "Bound_Rings_" + stepString + ".csv" };
-		std::string wakeRingFileName{ "Wake_Rings_" + stepString + ".csv" };
+			std::string stepString{ std::to_string(step) };
 
-		if (step == 74)
-		{
-			history[step].surface.getPanelMesh().writeToFiles(filePath, panelFileName);
-			history[step].surface.getRingMesh().writeToFiles(filePath, boundRingFileName);
-			history[step].wake.getMesh().writeToFiles(filePath, wakeRingFileName);
+			history[step].surface.savePanels(filePath + "surface_panels_" + stepString + ".csv");
+			history[step].surface.saveRings(filePath + "surface_rings_" + stepString + ".csv");
+
+			if (step >= 1)
+				history[step].wake.saveRings(filePath + "wake_rings_" + stepString + ".csv");
 		}
 	}
 
