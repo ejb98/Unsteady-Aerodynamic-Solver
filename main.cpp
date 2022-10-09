@@ -62,7 +62,7 @@ int main()
 	Surface baseSurface{ mesh };
 
 	// Apply angle of attack
-	baseSurface.rotate(0.0, angleOfAttack, 0.0);
+	//baseSurface.rotate(0.0, angleOfAttack, 0.0);
 
 	// Create time vector
 	std::vector<double> time{ linspace(startTime, endTime, timeSteps) };
@@ -74,7 +74,7 @@ int main()
 	{
 		Surface surface{ baseSurface };
 
-		surface.rotate(rollAmplitude * std::sin(rollFrequency * time[step]), 0.0, 0.0);
+		//surface.rotate(rollAmplitude * std::sin(rollFrequency * time[step]), 0.0, 0.0);
 		surface.translate(xVelocity * time[step], 0.0, 0.0);
 		
 		Component component{ surface };
@@ -88,7 +88,7 @@ int main()
 
 	for (int step{ 0 }; step < history.size(); ++step)
 	{
-		std::cout << "Step " << step << "...\n";
+		//std::cout << "Step " << step << "...\n";
 
 		// Solution for vorticity strengths of the bound vortex rings
 		std::vector<double> vNormalSurfaceMotion{ normalVelocityDueToMotion(history[step]) };

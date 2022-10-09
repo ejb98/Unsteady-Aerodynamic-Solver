@@ -1,6 +1,7 @@
 #include "Mesh.h"
 #include "Matrix.h"
 #include "Position.h"
+#include "zeros.h"
 #include <array>
 
 Mesh constructBoundRingMesh(const Mesh& panelMesh)
@@ -11,6 +12,10 @@ Mesh constructBoundRingMesh(const Mesh& panelMesh)
 
 	int rows{ static_cast<int>(xMatrix.size()) };
 	int columns{ static_cast<int>(xMatrix[0].size()) };
+
+	Matrix xMatrixNew{ zeros(rows, columns) };
+	Matrix yMatrixNew{ zeros(rows, columns) };
+	Matrix zMatrixNew{ zeros(rows, columns) };
 
 	for (int column{ 0 }; column < columns - 1; ++column)
 	{
@@ -32,47 +37,39 @@ Mesh constructBoundRingMesh(const Mesh& panelMesh)
 			int count{};
 			for (auto& position : newPositions)
 			{
-				double x{ position.x };
-				double y{ position.y };
-				double z{ position.z };
-
 				if (count == 0 || count == 3)
 				{
-					x += xDifferenceNear / 4.0;
-					z += zDifferenceNear / 4.0;
+					position.x += xDifferenceNear / 4.0;
+					position.z += zDifferenceNear / 4.0;
 				}
 				else
 				{
-					x += xDifferenceFar / 4.0;
-					z += zDifferenceFar / 4.0;
+					position.x += xDifferenceFar / 4.0;
+					position.z += zDifferenceFar / 4.0;
 				}
-
-				position.x = x;
-				position.y = y;
-				position.z = z;
 
 				++count;
 			}
 
-			xMatrix[row][column] = newPositions[0].x;
-			yMatrix[row][column] = newPositions[0].y;
-			zMatrix[row][column] = newPositions[0].z;
+			xMatrixNew[row][column] = newPositions[0].x;
+			yMatrixNew[row][column] = newPositions[0].y;
+			zMatrixNew[row][column] = newPositions[0].z;
 
-			xMatrix[row + 1][column] = newPositions[1].x;
-			yMatrix[row + 1][column] = newPositions[1].y;
-			zMatrix[row + 1][column] = newPositions[1].z;
+			xMatrixNew[row + 1][column] = newPositions[1].x;
+			yMatrixNew[row + 1][column] = newPositions[1].y;
+			zMatrixNew[row + 1][column] = newPositions[1].z;
 
-			xMatrix[row + 1][column + 1] = newPositions[2].x;
-			yMatrix[row + 1][column + 1] = newPositions[2].y;
-			zMatrix[row + 1][column + 1] = newPositions[2].z;
+			xMatrixNew[row + 1][column + 1] = newPositions[2].x;
+			yMatrixNew[row + 1][column + 1] = newPositions[2].y;
+			zMatrixNew[row + 1][column + 1] = newPositions[2].z;
 
-			xMatrix[row][column + 1] = newPositions[3].x;
-			yMatrix[row][column + 1] = newPositions[3].y;
-			zMatrix[row][column + 1] = newPositions[3].z;
+			xMatrixNew[row][column + 1] = newPositions[3].x;
+			yMatrixNew[row][column + 1] = newPositions[3].y;
+			zMatrixNew[row][column + 1] = newPositions[3].z;
 		}
 	}
 	
-	Mesh ringMesh{ xMatrix, yMatrix, zMatrix };
+	Mesh ringMesh{ xMatrixNew, yMatrixNew, zMatrixNew };
 
 	return ringMesh;
 }
