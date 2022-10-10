@@ -48,8 +48,8 @@ int main()
 
 	// Time parameters
 	double startTime{ 0.0 };
-	double endTime{ 1.875 };
-	int timeSteps{ 75 };
+	double endTime{ 1.875 * 2.0 };
+	int timeSteps{ 75 * 2};
 
 	// Static parameters
 	double angleOfAttack{ 3.1415926535 * 5.0 / 180.0 };
@@ -57,7 +57,7 @@ int main()
 	// Kinematic parameters
 	double xVelocity{ -5.0 };
 	double rollAmplitude{ 3.1415926535 * 45.0 / 180.0 };
-	double rollFrequency{ 2.0 * 3.1415926535 * (1.0 / (endTime - startTime)) };
+	double rollFrequency{ 2.0 * 2.0 * 3.1415926535 * (1.0 / (endTime - startTime)) };
 
 	// ****** INPUT SECTION END ******
 
@@ -217,15 +217,15 @@ int main()
 			newWake.setRings(newRings);
 
 			history[step].wake = newWake;
-
-			std::string stepString{ std::to_string(step) };
-
-			history[step].surface.savePanels(filePath + "surface_panels_" + stepString + ".csv");
-			history[step].surface.saveRings(filePath + "surface_rings_" + stepString + ".csv");
-
-			if (step >= 1)
-				history[step].wake.saveRings(filePath + "wake_rings_" + stepString + ".csv");
 		}
+
+		std::string stepString{ std::to_string(step) };
+
+		history[step].surface.savePanels(filePath + "surface_panels_" + stepString + ".csv");
+		history[step].surface.saveRings(filePath + "surface_rings_" + stepString + ".csv");
+
+		if (step >= 1)
+			history[step].wake.saveRings(filePath + "wake_rings_" + stepString + ".csv");
 	}
 
 	// ****** MAIN TIME LOOP END ******
