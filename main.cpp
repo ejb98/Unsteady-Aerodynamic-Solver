@@ -80,7 +80,7 @@ int main()
 	{
 		Surface surface{ baseSurface };
 
-		surface.rotate(rollAmplitude * std::sin(rollFrequency * time[step]), 0.0, 0.0);
+		//surface.rotate(rollAmplitude * std::sin(rollFrequency * time[step]), 0.0, 0.0);
 		surface.translate(xVelocity * time[step], 0.0, 0.0);
 		
 		Component component{ surface };
