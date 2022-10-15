@@ -43,18 +43,16 @@ int main()
 	double span{ 6.0 };
 
 	// Number of panels
-	int chordwisePanels{ 2 };
-	int spanwisePanels{ 2 };
+	int chordwisePanels{ 4 };
+	int spanwisePanels{ 12 };
 
 	// Time parameters
 	double startTime{ 0.0 };
-	double endTime{ 1.875 * 2.0 };
-	int timeSteps{ 75 * 2};
+	double endTime{ 1.875 };
+	int timeSteps{ 75 };
 
 	// Static parameters
 	double angleOfAttack{ 3.1415926535 * 5.0 / 180.0 };
-
-	double fortyFiveDegrees{ 3.1415926535 * 45.0 / 180.0 };
 
 	// Kinematic parameters
 	double xVelocity{ -5.0 };
@@ -69,14 +67,7 @@ int main()
 	Surface baseSurface{ mesh };
 
 	// Apply angle of attack
-	//baseSurface.rotate(0.0, angleOfAttack, 0.0);
-
-	//baseSurface.rotate(0.0, fortyFiveDegrees, 0.0);
-	//baseSurface.rotate(0.0, 0.0, fortyFiveDegrees);
-	baseSurface.rotate(fortyFiveDegrees, 0.0, 0.0);
-	baseSurface.savePanels(filePath + "tangent_test.csv");
-
-	/*
+	baseSurface.rotate(0.0, angleOfAttack, 0.0);
 
 	// Create time vector
 	std::vector<double> time{ linspace(startTime, endTime, timeSteps) };
@@ -236,8 +227,6 @@ int main()
 		if (step >= 1)
 			history[step].wake.saveRings(filePath + "wake_rings_" + stepString + ".csv");
 	}
-
-	*/
 
 	// ****** MAIN TIME LOOP END ******
 

@@ -1,6 +1,5 @@
 #include "Point.h"
 #include "Vector.h"
-#include "calculateCollocationPoint.h"
 #include "calculateVector.h"
 #include "cross.h"
 #include "dot.h"
