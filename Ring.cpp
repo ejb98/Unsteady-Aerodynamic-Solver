@@ -3,6 +3,7 @@
 #include "InducedVelocity.h"
 #include "calculateCollocationPoint.h"
 #include "calculateNormalVector.h"
+#include "calculateTangentVector.h"
 #include "biotSavart.h"
 #include <iostream>
 
@@ -13,6 +14,7 @@ Ring::Ring(const std::array<Point, 4>& vertices) :
 {
 	m_collocationPoint = calculateCollocationPoint(m_vertices);
 	m_normalVector = calculateNormalVector(m_vertices);
+	m_tangentVector = calculateTangentVector(m_vertices);
 }
 
 const std::array<Point, 4>& Ring::getVertices() const { return m_vertices; }
@@ -22,12 +24,14 @@ void Ring::setVertices(const std::array<Point, 4>& vertices)
 	m_vertices = vertices;
 	m_collocationPoint = calculateCollocationPoint(m_vertices);
 	m_normalVector = calculateNormalVector(m_vertices);
+	m_tangentVector = calculateTangentVector(m_vertices);
 }
 
 const Point& Ring::getCollocationPoint() const { return m_collocationPoint; }
 void Ring::setCollocationPoint(const Point& collocationPoint) { m_collocationPoint = collocationPoint; }
 
 const Vector& Ring::getNormalVector() const { return m_normalVector; }
+const Vector& Ring::getTangentVector() const { return m_tangentVector; }
 
 double Ring::getVorticityStrength() const { return m_vorticityStrength; }
 void Ring::setVorticityStrength(double vorticityStrength) { m_vorticityStrength = vorticityStrength; }

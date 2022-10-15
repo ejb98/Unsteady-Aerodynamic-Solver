@@ -14,6 +14,7 @@ private:
 	Point m_collocationPoint{};
 
 	Vector m_normalVector{};
+	Vector m_tangentVector{};
 
 	double m_vorticityStrength{};
 
@@ -28,6 +29,7 @@ public:
 	void setCollocationPoint(const Point& collocationPoint);
 
 	const Vector& getNormalVector() const;
+	const Vector& getTangentVector() const;
 
 	double getVorticityStrength() const;
 	void setVorticityStrength(double vorticityStrength);

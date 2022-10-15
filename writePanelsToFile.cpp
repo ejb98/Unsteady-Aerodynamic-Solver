@@ -9,7 +9,8 @@ void writePanelsToFile(const std::vector<Panel>& panels, const std::string& file
 
     file << "point1X,point1Y,point1Z,point2X,point2Y,point2Z,"
          << "point3X,point3Y,point3Z,point4X,point4Y,point4Z,"
-         << "normalX,normalY,normalZ,area,pressure\n";
+         << "collocX,collocY,collocZ,normalX,normalY,normalZ,"
+         << "tangentX,tangentY,tangentZ,area,pressure\n";
 
     file << std::setprecision(6) << std::fixed;
 
@@ -22,9 +23,17 @@ void writePanelsToFile(const std::vector<Panel>& panels, const std::string& file
             file << panel.getVertices()[index].position.z << ',';
         }
 
+        file << panel.getCollocationPoint().position.x << ',';
+        file << panel.getCollocationPoint().position.y << ',';
+        file << panel.getCollocationPoint().position.z << ',';
+
         file << panel.getNormalVector().x << ',';
         file << panel.getNormalVector().y << ',';
         file << panel.getNormalVector().z << ',';
+
+        file << panel.getTangentVector().x << ',';
+        file << panel.getTangentVector().y << ',';
+        file << panel.getTangentVector().z << ',';
 
         file << panel.getArea() << ',';
         file << panel.getPressure() << '\n';

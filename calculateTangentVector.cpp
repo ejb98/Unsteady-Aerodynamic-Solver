@@ -10,21 +10,11 @@
 
 Vector calculateTangentVector(const std::array<Point, 4>& vertices)
 {
-	Point collocationPoint{ calculateCollocationPoint(vertices) };
+	Vector vector{ calculateVector(vertices[2], vertices[1]) };
 
-	Point farEdgePoint{ collocationPoint.position.x, vertices[1].position.y, collocationPoint.position.z };
+	double divisor{ std::sqrt(dot(vector, vector)) };
 
-	Vector vectorA{ calculateNormalVector(vertices) };
-	Vector vectorB{ calculateVector(collocationPoint, farEdgePoint) };
-	Vector crossProduct{ cross(vectorA, vectorB) };
-
-	double divisor{ std::sqrt(dot(crossProduct, crossProduct)) };
-
-	Vector tangentVector{};
-
-	tangentVector.x = crossProduct.x / divisor;
-	tangentVector.y = crossProduct.y / divisor;
-	tangentVector.z = crossProduct.z / divisor;
+	Vector tangentVector{ vector.x / divisor, vector.y / divisor, vector.z / divisor };
 
 	return tangentVector;
 }

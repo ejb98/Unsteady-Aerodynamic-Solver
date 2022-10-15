@@ -1,5 +1,6 @@
 #include "Point.h"
 #include "Vector.h"
+#include "calculateCollocationPoint.h"
 #include "calculateVector.h"
 #include "cross.h"
 #include "dot.h"
@@ -14,11 +15,7 @@ Vector calculateNormalVector(const std::array<Point, 4>& vertices)
 
 	double divisor{ std::sqrt(dot(crossProduct, crossProduct)) };
 
-	Vector normalVector{};
-
-	normalVector.x = crossProduct.x / divisor;
-	normalVector.y = crossProduct.y / divisor;
-	normalVector.z = crossProduct.z / divisor;
+	Vector normalVector{ crossProduct.x / divisor, crossProduct.y / divisor, crossProduct.z / divisor };
 
 	return normalVector;
 }

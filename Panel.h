@@ -10,7 +10,10 @@ class Panel
 private:
 	std::array<Point, 4> m_vertices{};
 
+	Point m_collocationPoint{};
+
 	Vector m_normalVector{};
+	Vector m_tangentVector{};
 
 	double m_area{};
 	double m_pressure{};
@@ -22,7 +25,10 @@ public:
 	const std::array<Point, 4>& getVertices() const;
 	void setVertices(const std::array<Point, 4>& vertices);
 
+	const Point& getCollocationPoint() const;
+
 	const Vector& getNormalVector() const;
+	const Vector& getTangentVector() const;
 
 	double getPressure() const;
 	void setPressure(double pressure);
