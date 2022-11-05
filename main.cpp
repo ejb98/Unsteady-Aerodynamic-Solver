@@ -19,6 +19,7 @@
 #include <vector>
 #include <cmath>
 #include <string>
+#include <omp.h>
 
 // *If compiling with Visual Studio, you will need to add /bigobj as an
 // additional option in the Properties > Configuration Properties >
@@ -49,7 +50,7 @@ int main()
 	// Time parameters
 	double startTime{ 0.0 };
 	double endTime{ 1.875 };
-	int timeSteps{ 75 };
+	int timeSteps{ 150 };
 
 	// Static parameters
 	double angleOfAttack{ 3.1415926535 * 5.0 / 180.0 };
@@ -114,9 +115,12 @@ int main()
 			int index{};
 			for (const auto& boundVortexRing : history[step].surface.getRings())
 			{
-
-				for (const auto& wakeVortexRing : history[step - 1].wake.getRings())
+				//for (const auto& wakeVortexRing : history[step - 1].wake.getRings())
+				#pragma omp parallel for
+				for (int ringIndex{ 0 }; ringIndex < history[step - 1].wake.getRings().size(); ++ringIndex)
 				{
+					Ring wakeVortexRing{ history[step - 1].wake.getRings()[ringIndex] };
+
 					InducedVelocity inducedVelocity{ wakeVortexRing.induceVelocityOn(boundVortexRing.getCollocationPoint(),
 						wakeVortexRing.getVorticityStrength()) };
 
@@ -170,8 +174,12 @@ int main()
 					Position position{ xMatrix[row][column], yMatrix[row][column], zMatrix[row][column] };
 					Point point{ position };
 
-					for (const auto& boundVortexRing : history[step].surface.getRings())
+					//for (const auto& boundVortexRing : history[step].surface.getRings())
+					#pragma omp parallel for
+					for (int ringIndex{ 0 }; ringIndex < history[step].surface.getRings().size(); ++ringIndex)
 					{
+						Ring boundVortexRing{ history[step].surface.getRings()[ringIndex] };
+
 						InducedVelocity inducedVelocity{ boundVortexRing.induceVelocityOn(point, boundVortexRing.getVorticityStrength()) };
 
 						xVelocity[row][column] += inducedVelocity.totalVelocity.x;
@@ -179,8 +187,12 @@ int main()
 						zVelocity[row][column] += inducedVelocity.totalVelocity.z;
 					}
 
-					for (const auto& wakeVortexRing : history[step].wake.getRings())
+					//for (const auto& wakeVortexRing : history[step].wake.getRings())
+					#pragma omp parallel for
+					for (int ringIndex{ 0 }; ringIndex < history[step].wake.getRings().size(); ++ringIndex)
 					{
+						Ring wakeVortexRing{ history[step].wake.getRings()[ringIndex] };
+
 						InducedVelocity inducedVelocity{ wakeVortexRing.induceVelocityOn(point, wakeVortexRing.getVorticityStrength()) };
 
 						xVelocity[row][column] += inducedVelocity.totalVelocity.x;
