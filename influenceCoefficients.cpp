@@ -5,7 +5,6 @@
 #include "zeros.h"
 #include "dot.h"
 #include <vector>
-#include <omp.h>
 
 Matrix influenceCoefficients(const Component& component)
 {
