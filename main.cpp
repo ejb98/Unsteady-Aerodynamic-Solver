@@ -37,7 +37,7 @@ int main()
 	// ***** INPUT SECTION START *****
 	
 	// File path for output CSV files
-	std::string filePath{ "C:\\Users\\ethan\\Projects\\cpp\\csv-files\\" };
+	std::string filePath{ "C:\\Users\\ethan\\Downloads\\" };
 
 	// Rectangular wing dimensions
 	double chord{ 1.0 };
